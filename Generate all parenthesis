@@ -1,0 +1,42 @@
+//Question daily problem .
+//Problem statement
+//Given n pairs of parentheses, write a function to generate and print all combinations of well-formed parentheses. That is, you need to generate all possible valid set of parenthesis that can be formed with given number of pairs.import java.util.ArrayList;
+//date - 29th July 2024-hard problem
+
+public class Solution {
+	
+	
+	
+	public static void printWellFormedParanthesis( int n){
+		ArrayList<String> combinations = generateParanthesis(n);
+		for(String comb:combinations){
+			System.out.println(comb);
+		}  
+
+	}
+
+	public static ArrayList<String > generateParanthesis (int n){
+		ArrayList<String> result = new ArrayList<>();
+		generateParanthesisHelper(result,"",0,0,n);
+		return result;
+	}
+
+	public static void generateParanthesisHelper(ArrayList<String> result,String currentString,int open,int close,int max){
+
+		if(currentString.length()==max*2){
+			result.add(currentString);
+			return ;
+		}
+		if(open<max){
+			generateParanthesisHelper(result,currentString+"(",open+1,close,max);
+	
+		}
+		if(close<open){
+			generateParanthesisHelper(result,currentString+")",open,close+1,max);
+	
+		}
+	}
+	
+}
+	
+
