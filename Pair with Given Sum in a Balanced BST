@@ -1,0 +1,48 @@
+//Question link: https://www.naukri.com/code360/problem-of-the-day/moderate (Pair with Given Sum in a Balanced BST) 
+//code 
+import java.util.* ;
+import java.io.*; 
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    class TreeNode<T>
+    {
+       public:
+        T data;
+        TreeNode<T> left;
+        TreeNode<T> right;
+
+        TreeNode(T data)
+        {
+            this.data = data;
+            left = null;
+            right = null;
+        }
+    };
+
+************************************************************/
+
+public class Solution {
+    public static boolean findTargetPair(TreeNode<Integer> root, int target) {
+        HashSet<Integer> mpp=new HashSet<>();
+        return checkLeftRight(root,target,mpp);
+    }
+    public static boolean checkLeftRight(TreeNode<Integer> root,int target,HashSet<Integer> mpp){
+        if(root == null ){
+            return false;
+        }
+        if(checkLeftRight(root.left,target,mpp)){
+            return true;
+        }
+        Integer num = target - root.data;
+        if(mpp.contains(num)){
+            return true;
+        }else{
+            mpp.add(root.data);   
+        }
+        return checkLeftRight(root.right, target,mpp);
+        
+        
+    }
+}
